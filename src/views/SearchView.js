@@ -12,12 +12,10 @@ const StyledWrapper = styled.div`
   background-color: #ddd;
 `;
 
-const SearchView = () => {
-  return (
-    <StyledWrapper>
-      <SearchForm />
-    </StyledWrapper>
-  );
-};
+const SearchView = () => (
+  <StyledWrapper>
+    <SearchForm />
+  </StyledWrapper>
+);
 
 export default SearchView;

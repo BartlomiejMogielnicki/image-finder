@@ -6,6 +6,7 @@
   ],
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "comma-dangle":["only-multiline"]
+    "comma-dangle": [0],
+    "linebreak-style": [0, "windows"],
   }
 }

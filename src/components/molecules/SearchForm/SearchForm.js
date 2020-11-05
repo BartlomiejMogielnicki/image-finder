@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 
 const StyledForm = styled.form`
@@ -23,20 +24,24 @@ const StyledInput = styled.input`
 
 const SearchForm = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [submittedTerm, setSubmittedTerm] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSearchTerm('');
+    setSubmittedTerm(searchTerm);
   };
 
   return (
     <StyledForm onSubmit={(e) => handleSubmit(e)}>
-      <StyledIcon className="fas fa-search"></StyledIcon>
+      <StyledIcon className="fas fa-search" />
       <StyledInput
         type="text"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
+      {submittedTerm && (
+        <Redirect to={{ pathname: '/results', state: submittedTerm }} />
+      )}
     </StyledForm>
   );
 };
