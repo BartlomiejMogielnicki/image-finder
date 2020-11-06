@@ -119,6 +119,20 @@ const PictureModal = ({ picture, hideModal }) => {
 };
 
 PictureModal.propTypes = {
+  picture: PropTypes.shape({
+    id: PropTypes.string,
+    url: PropTypes.string,
+    likes: PropTypes.number,
+    location: PropTypes.shape({
+      country: PropTypes.string,
+      city: PropTypes.string,
+    }),
+    owner: PropTypes.shape({
+      name: PropTypes.string,
+      image: PropTypes.string,
+      twitter: PropTypes.string,
+    }),
+  }).isRequired,
   hideModal: PropTypes.func.isRequired,
 };
 
