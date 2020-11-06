@@ -7,6 +7,7 @@ import SearchForm from '../components/molecules/SearchForm/SearchForm';
 import PicturesGallery from '../components/organisms/PicturesGallery/PicturesGallery';
 
 const StyledWrapper = styled.div`
+  padding-bottom: 30px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -27,6 +28,7 @@ const ResultsView = ({ location }) => {
         params: {
           client_id: process.env.REACT_APP_API_KEY,
           query: searchTerm,
+          per_page: 12,
         },
       })
       .then((response) => {
@@ -37,7 +39,11 @@ const ResultsView = ({ location }) => {
             regular: item.urls.regular,
           },
           likes: item.likes,
-          owner: item.user.name,
+          owner: {
+            name: item.user.name,
+            image: item.user.profile_image.small,
+            twitter: item.user.twitter_username,
+          },
         }));
         setFetchedPictures(picturesArray);
       })

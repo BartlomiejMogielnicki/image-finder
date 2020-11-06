@@ -4,12 +4,17 @@ import PropTypes from 'prop-types';
 
 const StyledWrapper = styled.li`
   width: 400px;
-  height: 100%;
-  min-height: 300px;
+  height: 300px;
   background-image: url(${(props) => props.urlSmall});
   background-position: center;
   background-repeat: no-repeat;
+  background-size: cover;
+  transition: 0.3s;
   cursor: pointer;
+
+  :hover {
+    transform: scale(1.05);
+  }
 `;
 
 const PictureItem = ({ id, urlSmall, clicked }) => (
