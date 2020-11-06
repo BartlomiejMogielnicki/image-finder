@@ -30,12 +30,13 @@ export const fetchSinglePicture = (id) => {
   return fetchedPicture;
 };
 
-export const fetchPictures = (searchTerm) => {
+export const fetchPictures = (searchTerm, page) => {
   const fetchedPictures = axios
     .get('https://api.unsplash.com/search/photos', {
       params: {
         client_id: process.env.REACT_APP_API_KEY,
         query: searchTerm,
+        page,
         per_page: 12,
       },
     })

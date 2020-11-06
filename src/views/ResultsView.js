@@ -22,14 +22,35 @@ const ResultsView = ({ location }) => {
   const { state: searchTerm } = location;
 
   const [fetchedPictures, setFetchedPictures] = useState([]);
+  const [pageNumber, setPageNumber] = useState(1);
 
-  const getPictures = async () => {
-    const fetchedPictured = await fetchPictures(searchTerm);
-    setFetchedPictures(fetchedPictured);
+  const handleGetPictures = async () => {
+    const fetchedPicturesArray = await fetchPictures(searchTerm, pageNumber);
+    setFetchedPictures(fetchedPicturesArray);
+    setPageNumber((prevPageNumber) => prevPageNumber + 1);
+  };
+
+  const handleGetMorePictures = async () => {
+    const fetchedPicturesArray = await fetchPictures(searchTerm, pageNumber);
+    setFetchedPictures([...fetchedPictures, ...fetchedPicturesArray]);
+  };
+
+  const handleScroll = () => {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+      setPageNumber((prevPageNumber) => prevPageNumber + 1);
+      handleGetMorePictures();
+    }
   };
 
   useEffect(() => {
-    getPictures();
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [pageNumber]);
+
+  useEffect(() => {
+    handleGetPictures();
   }, [searchTerm]);
 
   return (
