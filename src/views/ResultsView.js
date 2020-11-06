@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import axios from 'axios';
+
+import { fetchPictures } from '../utils/index';
 
 import SearchForm from '../components/molecules/SearchForm/SearchForm';
 import PicturesGallery from '../components/organisms/PicturesGallery/PicturesGallery';
@@ -22,35 +23,14 @@ const ResultsView = ({ location }) => {
 
   const [fetchedPictures, setFetchedPictures] = useState([]);
 
+  const getPictures = async () => {
+    const fetchedPictured = await fetchPictures(searchTerm);
+    setFetchedPictures(fetchedPictured);
+  };
+
   useEffect(() => {
-    axios
-      .get('https://api.unsplash.com/search/photos', {
-        params: {
-          client_id: process.env.REACT_APP_API_KEY,
-          query: searchTerm,
-          per_page: 12,
-        },
-      })
-      .then((response) => {
-        const picturesArray = response.data.results.map((item) => ({
-          id: item.id,
-          url: {
-            small: item.urls.small,
-            regular: item.urls.regular,
-          },
-          likes: item.likes,
-          owner: {
-            name: item.user.name,
-            image: item.user.profile_image.small,
-            twitter: item.user.twitter_username,
-          },
-        }));
-        setFetchedPictures(picturesArray);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+    getPictures();
+  }, [searchTerm]);
 
   return (
     <StyledWrapper>

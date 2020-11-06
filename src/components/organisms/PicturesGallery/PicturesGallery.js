@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import axios from 'axios';
+
+import { fetchSinglePicture } from '../../../utils/index';
 
 import PictureItem from '../../molecules/PictureItem/PictureItem';
 import PictureModal from '../PictureModal/PictureModal';
@@ -15,32 +16,9 @@ const StyledListWrapper = styled.ul`
 const PicturesGallery = ({ picturesArray }) => {
   const [modalPicture, setModalPicture] = useState('');
 
-  const handleGetPicture = (id) => {
-    axios
-      .get(`https://api.unsplash.com/photos/${id}`, {
-        params: {
-          client_id: process.env.REACT_APP_API_KEY,
-        },
-      })
-      .then((response) => {
-        const item = response.data;
-        const picture = {
-          id: item.id,
-          url: item.urls.regular,
-          likes: item.likes,
-          location: {
-            country: item.location.country,
-            city: item.location.city,
-          },
-          owner: {
-            name: item.user.name,
-            image: item.user.profile_image.small,
-            twitter: item.user.twitter_username,
-          },
-        };
-        setModalPicture(picture);
-      })
-      .catch((error) => console.log(error));
+  const handleGetPicture = async (id) => {
+    const fetchedPicture = await fetchSinglePicture(id);
+    setModalPicture(fetchedPicture);
   };
 
   const handleShowHideModal = () => {

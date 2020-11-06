@@ -1,0 +1,63 @@
+import axios from 'axios';
+
+export const fetchSinglePicture = (id) => {
+  const fetchedPicture = axios
+    .get(`https://api.unsplash.com/photos/${id}`, {
+      params: {
+        client_id: process.env.REACT_APP_API_KEY,
+      },
+    })
+    .then((response) => {
+      const item = response.data;
+      const picture = {
+        id: item.id,
+        url: item.urls.regular,
+        likes: item.likes,
+        location: {
+          country: item.location.country,
+          city: item.location.city,
+        },
+        owner: {
+          name: item.user.name,
+          image: item.user.profile_image.small,
+          twitter: item.user.twitter_username,
+        },
+      };
+      return picture;
+    })
+    .catch((error) => console.log(error));
+
+  return fetchedPicture;
+};
+
+export const fetchPictures = (searchTerm) => {
+  const fetchedPictures = axios
+    .get('https://api.unsplash.com/search/photos', {
+      params: {
+        client_id: process.env.REACT_APP_API_KEY,
+        query: searchTerm,
+        per_page: 12,
+      },
+    })
+    .then((response) => {
+      const picturesArray = response.data.results.map((item) => ({
+        id: item.id,
+        url: {
+          small: item.urls.small,
+          regular: item.urls.regular,
+        },
+        likes: item.likes,
+        owner: {
+          name: item.user.name,
+          image: item.user.profile_image.small,
+          twitter: item.user.twitter_username,
+        },
+      }));
+      return picturesArray;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+  return fetchedPictures;
+};
