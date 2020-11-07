@@ -84,7 +84,13 @@ const StyledModalBackdrop = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
 `;
 
-const PictureModal = ({ picture, pictureIndex, hideModal, changePicture }) => {
+const PictureModal = ({
+  picture,
+  pictureIndex,
+  lastIndex,
+  hideModal,
+  changePicture,
+}) => {
   const twitterUrl = `https://twitter.com/${picture.owner.twitter}`;
   return (
     <StyledModalWrapper>
@@ -110,12 +116,16 @@ const PictureModal = ({ picture, pictureIndex, hideModal, changePicture }) => {
           </StyledLocationInfo>
         )}
         <StyledImage src={picture.url} alt="" />
-        <Button leftArrow clicked={() => changePicture(pictureIndex - 1)}>
-          <i className="fas fa-angle-left" />
-        </Button>
-        <Button rightArrow clicked={() => changePicture(pictureIndex + 1)}>
-          <i className="fas fa-angle-right" />
-        </Button>
+        {pictureIndex !== 0 && (
+          <Button leftArrow clicked={() => changePicture(pictureIndex - 1)}>
+            <i className="fas fa-angle-left" />
+          </Button>
+        )}
+        {pictureIndex !== lastIndex && (
+          <Button rightArrow clicked={() => changePicture(pictureIndex + 1)}>
+            <i className="fas fa-angle-right" />
+          </Button>
+        )}
       </StyledContainer>
       <StyledModalBackdrop onClick={() => hideModal()} />
     </StyledModalWrapper>
@@ -137,6 +147,8 @@ PictureModal.propTypes = {
       twitter: PropTypes.string,
     }),
   }).isRequired,
+  pictureIndex: PropTypes.number.isRequired,
+  lastIndex: PropTypes.number.isRequired,
   hideModal: PropTypes.func.isRequired,
   changePicture: PropTypes.func.isRequired,
 };

@@ -50,6 +50,7 @@ const PicturesGallery = ({ picturesArray }) => {
         <PictureModal
           picture={modalPicture}
           pictureIndex={modalPictureIndex}
+          lastIndex={picturesArray.length - 1}
           hideModal={handleHideModal}
           changePicture={handleChangeModalPicture}
         />
