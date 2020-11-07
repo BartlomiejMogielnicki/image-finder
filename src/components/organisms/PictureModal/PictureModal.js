@@ -18,12 +18,23 @@ const StyledModalWrapper = styled.div`
 `;
 
 const StyledContainer = styled.div`
+  padding: 60px 30px;
+  max-width: 90%;
+  max-height: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   background-color: #fff;
   z-index: 1;
+
+  @media (max-width: 800px) {
+    padding: 10px;
+  }
+
+  @media (max-height: 800px) {
+    padding: 10px;
+  }
 `;
 
 const StyledOwnerData = styled.div`
@@ -51,6 +62,18 @@ const StyledOwnerInfo = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: left;
+
+  @media (max-width: 800px) {
+    padding: 2px;
+    background-color: white;
+    font-size: 0.7rem;
+  }
+
+  @media (max-height: 800px) {
+    padding: 2px;
+    background-color: white;
+    font-size: 0.7rem;
+  }
 `;
 
 const StyledLikesInfo = styled.div`
@@ -60,6 +83,18 @@ const StyledLikesInfo = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 800px) {
+    padding: 2px;
+    background-color: white;
+    font-size: 0.7rem;
+  }
+
+  @media (max-height: 800px) {
+    padding: 2px;
+    background-color: white;
+    font-size: 0.7rem;
+  }
 `;
 
 const StyledLocationInfo = styled.div`
@@ -68,12 +103,25 @@ const StyledLocationInfo = styled.div`
   bottom: 20px;
   display: flex;
   align-items: center;
+
+  @media (max-width: 800px) {
+    padding: 2px;
+    background-color: white;
+    font-size: 0.7rem;
+  }
+
+  @media (max-height: 800px) {
+    padding: 2px;
+    background-color: white;
+    font-size: 0.7rem;
+  }
 `;
 
 const StyledImage = styled.img`
-  max-width: 900px;
-  height: 80%;
-  max-height: 90vh;
+  /* width: 90%; */
+  max-width: 100%;
+  /* height: 80%; */
+  max-height: 100%;
 `;
 
 const StyledIcon = styled.i`

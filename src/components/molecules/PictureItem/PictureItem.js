@@ -3,9 +3,14 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const StyledWrapper = styled.li`
-  width: 425px;
+  width: 100%;
+  max-width: 425px;
   justify-self: center;
   cursor: zoom-in;
+
+  @media (max-width: 500px) {
+    width: 80%;
+  }
 `;
 
 const StyledImage = styled.img`

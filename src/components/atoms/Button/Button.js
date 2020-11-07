@@ -4,21 +4,35 @@ import styled, { css } from 'styled-components';
 
 const StyledButton = styled.button`
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  bottom: 50%;
+  transform: translateY(50%);
   font-size: 5rem;
   color: white;
+
+  @media (max-width: 1400px) and (orientation: portrait) {
+    bottom: -50px;
+  }
 
   ${({ leftArrow }) =>
     leftArrow &&
     css`
       left: -100px;
+
+      @media (max-width: 1400px) and (orientation: portrait) {
+        left: 50%;
+        transform: translate(-150%, 50%);
+      }
     `}
 
   ${({ rightArrow }) =>
     rightArrow &&
     css`
       right: -100px;
+
+      @media (max-width: 1400px) and (orientation: portrait) {
+        right: 50%;
+        transform: translate(150%, 50%);
+      }
     `}
 `;
 
