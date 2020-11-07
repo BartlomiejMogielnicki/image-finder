@@ -25,7 +25,7 @@ const StyledInput = styled.input`
   border-radius: 10px;
 `;
 
-const SearchForm = () => {
+const SearchForm = ({ top }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [submittedTerm, setSubmittedTerm] = useState('');
 
@@ -35,7 +35,7 @@ const SearchForm = () => {
   };
 
   return (
-    <StyledForm onSubmit={(e) => handleSubmit(e)}>
+    <StyledForm onSubmit={(e) => handleSubmit(e)} top={top}>
       <StyledIcon className="fas fa-search" />
       <StyledInput
         type="text"

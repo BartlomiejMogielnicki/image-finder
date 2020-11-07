@@ -25,7 +25,7 @@ export const fetchSinglePicture = (id) => {
       };
       return picture;
     })
-    .catch((error) => console.log(error));
+    .catch((error) => error);
 
   return fetchedPicture;
 };

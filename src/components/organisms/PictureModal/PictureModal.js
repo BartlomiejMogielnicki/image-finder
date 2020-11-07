@@ -28,7 +28,7 @@ const StyledContainer = styled.div`
 
 const StyledOwnerData = styled.div`
   position: absolute;
-  top: 20px;
+  top: 15px;
   left: 20px;
   display: flex;
   align-items: center;

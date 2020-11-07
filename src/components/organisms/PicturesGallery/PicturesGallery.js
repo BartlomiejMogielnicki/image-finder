@@ -16,14 +16,33 @@ const StyledListWrapper = styled.ul`
   grid-gap: 20px 10px;
 `;
 
+const StyledError = styled.div`
+  padding: 5px 10px;
+  position: fixed;
+  right: 50%;
+  top: 50%;
+  transform: translate(50%, -50%);
+  background-color: black;
+  border: 2px solid red;
+  color: red;
+  font-size: 1.5rem;
+`;
+
 const PicturesGallery = ({ picturesArray }) => {
   const [modalPicture, setModalPicture] = useState('');
   const [modalPictureIndex, setModalPictureIndex] = useState('');
+  const [isModalError, setIsModalError] = useState(false);
 
   const handleGetPicture = async (id, index) => {
+    setIsModalError(false);
     const fetchedPicture = await fetchSinglePicture(id);
-    setModalPicture(fetchedPicture);
-    setModalPictureIndex(index);
+    if (fetchedPicture instanceof Error) {
+      setIsModalError(true);
+    } else {
+      setIsModalError(false);
+      setModalPicture(fetchedPicture);
+      setModalPictureIndex(index);
+    }
   };
 
   const handleHideModal = () => {
@@ -46,6 +65,9 @@ const PicturesGallery = ({ picturesArray }) => {
   return (
     <StyledListWrapper>
       {pictures}
+      {isModalError && (
+        <StyledError>Connection failed... Please try again.</StyledError>
+      )}
       {modalPicture && (
         <PictureModal
           picture={modalPicture}
