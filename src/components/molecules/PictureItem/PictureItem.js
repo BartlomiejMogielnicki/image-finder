@@ -3,14 +3,17 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const StyledWrapper = styled.li`
-  width: 400px;
-  height: 300px;
-  background-image: url(${(props) => props.urlSmall});
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  transition: 0.3s;
+  width: 350px;
+  justify-self: center;
   cursor: pointer;
+`;
+
+const StyledImage = styled.img`
+  width: 100%;
+  height: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  transition: 0.3s;
 
   :hover {
     transform: scale(1.05);
@@ -18,7 +21,9 @@ const StyledWrapper = styled.li`
 `;
 
 const PictureItem = ({ id, urlSmall, clicked }) => (
-  <StyledWrapper id={id} urlSmall={urlSmall} onClick={clicked} />
+  <StyledWrapper id={id} onClick={clicked}>
+    <StyledImage src={urlSmall} alt="" />
+  </StyledWrapper>
 );
 
 PictureItem.propTypes = {

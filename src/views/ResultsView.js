@@ -9,6 +9,7 @@ import PicturesGallery from '../components/organisms/PicturesGallery/PicturesGal
 import LoadingSpinner from '../components/atoms/LoadingSpinner/LoadingSpinner';
 
 const StyledWrapper = styled.div`
+  padding-top: 20px;
   padding-bottom: 100px;
   min-height: 100vh;
   display: flex;
@@ -17,7 +18,10 @@ const StyledWrapper = styled.div`
   background-color: #ddd;
 `;
 
-const StyledHeading = styled.h2``;
+const StyledHeading = styled.h2`
+  margin: 20px;
+  font-size: 2rem;
+`;
 
 const ResultsView = ({ location }) => {
   const { state: searchTerm } = location;
@@ -36,11 +40,11 @@ const ResultsView = ({ location }) => {
     const fetchedPicturesArray = await fetchPictures(searchTerm, pageNumber);
     setFetchedPictures([...fetchedPictures, ...fetchedPicturesArray]);
     setIsLoading(false);
+    setPageNumber((prevPageNumber) => prevPageNumber + 1);
   };
 
   const handleScroll = () => {
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-      setPageNumber((prevPageNumber) => prevPageNumber + 1);
       setIsLoading(true);
       handleGetMorePictures();
     }

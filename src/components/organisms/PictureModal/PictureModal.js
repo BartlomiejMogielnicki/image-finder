@@ -15,8 +15,6 @@ const StyledModalWrapper = styled.div`
 `;
 
 const StyledContainer = styled.div`
-  width: 1100px;
-  height: 800px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -69,12 +67,10 @@ const StyledLocationInfo = styled.div`
   align-items: center;
 `;
 
-const StyledImage = styled.div`
-  width: 80%;
+const StyledImage = styled.img`
+  max-width: 900px;
   height: 80%;
-  background-image: url(${(props) => props.pictureUrl});
-  background-position: center;
-  background-size: cover;
+  max-height: 90vh;
 `;
 
 const StyledModalBackdrop = styled.div`
@@ -111,7 +107,7 @@ const PictureModal = ({ picture, hideModal }) => {
             <StyledParagraph>{picture.location.city}</StyledParagraph>
           </StyledLocationInfo>
         )}
-        <StyledImage pictureUrl={picture.url} />
+        <StyledImage src={picture.url} alt="" />
       </StyledContainer>
       <StyledModalBackdrop onClick={() => hideModal()} />
     </StyledModalWrapper>

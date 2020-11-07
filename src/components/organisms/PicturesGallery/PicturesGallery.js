@@ -8,9 +8,12 @@ import PictureItem from '../../molecules/PictureItem/PictureItem';
 import PictureModal from '../PictureModal/PictureModal';
 
 const StyledListWrapper = styled.ul`
+  width: 100%;
+  max-width: 1500px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-auto-rows: minmax(50px, auto);
+  grid-gap: 20px 10px;
 `;
 
 const PicturesGallery = ({ picturesArray }) => {
