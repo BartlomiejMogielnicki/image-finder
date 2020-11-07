@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
+import Button from '../../atoms/Button/Button';
+
 const StyledModalWrapper = styled.div`
   position: fixed;
   top: 0;
@@ -82,7 +84,7 @@ const StyledModalBackdrop = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
 `;
 
-const PictureModal = ({ picture, hideModal }) => {
+const PictureModal = ({ picture, pictureIndex, hideModal, changePicture }) => {
   const twitterUrl = `https://twitter.com/${picture.owner.twitter}`;
   return (
     <StyledModalWrapper>
@@ -108,6 +110,12 @@ const PictureModal = ({ picture, hideModal }) => {
           </StyledLocationInfo>
         )}
         <StyledImage src={picture.url} alt="" />
+        <Button leftArrow clicked={() => changePicture(pictureIndex - 1)}>
+          <i className="fas fa-angle-left" />
+        </Button>
+        <Button rightArrow clicked={() => changePicture(pictureIndex + 1)}>
+          <i className="fas fa-angle-right" />
+        </Button>
       </StyledContainer>
       <StyledModalBackdrop onClick={() => hideModal()} />
     </StyledModalWrapper>
@@ -130,6 +138,7 @@ PictureModal.propTypes = {
     }),
   }).isRequired,
   hideModal: PropTypes.func.isRequired,
+  changePicture: PropTypes.func.isRequired,
 };
 
 export default PictureModal;

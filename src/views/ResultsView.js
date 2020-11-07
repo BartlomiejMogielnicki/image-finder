@@ -26,19 +26,19 @@ const StyledHeading = styled.h2`
 const ResultsView = ({ location }) => {
   const { state: searchTerm } = location;
 
-  const [fetchedPictures, setFetchedPictures] = useState([]);
+  const [galleryPictures, setGalleryPictures] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleGetPictures = async () => {
     const fetchedPicturesArray = await fetchPictures(searchTerm, 1);
-    setFetchedPictures(fetchedPicturesArray);
+    setGalleryPictures(fetchedPicturesArray);
     setPageNumber((prevPageNumber) => prevPageNumber + 1);
   };
 
   const handleGetMorePictures = async () => {
     const fetchedPicturesArray = await fetchPictures(searchTerm, pageNumber);
-    setFetchedPictures([...fetchedPictures, ...fetchedPicturesArray]);
+    setGalleryPictures([...galleryPictures, ...fetchedPicturesArray]);
     setIsLoading(false);
     setPageNumber((prevPageNumber) => prevPageNumber + 1);
   };
@@ -66,7 +66,7 @@ const ResultsView = ({ location }) => {
     <StyledWrapper>
       <SearchForm />
       <StyledHeading>{searchTerm}</StyledHeading>
-      {fetchedPictures && <PicturesGallery picturesArray={fetchedPictures} />}
+      {galleryPictures && <PicturesGallery picturesArray={galleryPictures} />}
       {isLoading && <LoadingSpinner />}
     </StyledWrapper>
   );

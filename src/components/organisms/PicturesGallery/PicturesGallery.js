@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import { fetchSinglePicture } from '../../../utils/index';
+import { fetchPictures, fetchSinglePicture } from '../../../utils/index';
 
 import PictureItem from '../../molecules/PictureItem/PictureItem';
 import PictureModal from '../PictureModal/PictureModal';
@@ -18,22 +18,28 @@ const StyledListWrapper = styled.ul`
 
 const PicturesGallery = ({ picturesArray }) => {
   const [modalPicture, setModalPicture] = useState('');
+  const [modalPictureIndex, setModalPictureIndex] = useState('');
 
-  const handleGetPicture = async (id) => {
+  const handleGetPicture = async (id, index) => {
     const fetchedPicture = await fetchSinglePicture(id);
     setModalPicture(fetchedPicture);
+    setModalPictureIndex(index);
   };
 
-  const handleShowHideModal = () => {
+  const handleHideModal = () => {
     setModalPicture('');
   };
 
-  const pictures = picturesArray.map((picture) => (
+  const handleChangeModalPicture = (index) => {
+    handleGetPicture(picturesArray[index].id, index);
+  };
+
+  const pictures = picturesArray.map((picture, index) => (
     <PictureItem
       key={picture.id}
       id={picture.id}
       urlSmall={picture.url.small}
-      clicked={() => handleGetPicture(picture.id)}
+      clicked={() => handleGetPicture(picture.id, index)}
     />
   ));
 
@@ -41,7 +47,12 @@ const PicturesGallery = ({ picturesArray }) => {
     <StyledListWrapper>
       {pictures}
       {modalPicture && (
-        <PictureModal picture={modalPicture} hideModal={handleShowHideModal} />
+        <PictureModal
+          picture={modalPicture}
+          pictureIndex={modalPictureIndex}
+          hideModal={handleHideModal}
+          changePicture={handleChangeModalPicture}
+        />
       )}
     </StyledListWrapper>
   );
