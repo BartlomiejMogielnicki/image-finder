@@ -49,7 +49,7 @@ const PicturesGallery = ({ picturesArray }) => {
       {modalPicture && (
         <PictureModal
           picture={modalPicture}
-          pictureIndex={modalPictureIndex}
+          pictureIndex={+modalPictureIndex}
           lastIndex={picturesArray.length - 1}
           hideModal={handleHideModal}
           changePicture={handleChangeModalPicture}
@@ -60,7 +60,11 @@ const PicturesGallery = ({ picturesArray }) => {
 };
 
 PicturesGallery.propTypes = {
-  picturesArray: PropTypes.arrayOf(PropTypes.object).isRequired,
+  picturesArray: PropTypes.arrayOf(PropTypes.object),
+};
+
+PicturesGallery.defaultProps = {
+  picturesArray: null,
 };
 
 export default PicturesGallery;

@@ -31,13 +31,15 @@ const Button = ({ clicked, children, leftArrow, rightArrow }) => (
 Button.propTypes = {
   clicked: PropTypes.func,
   children: PropTypes.any,
-  leftArrow: PropTypes.string,
+  leftArrow: PropTypes.bool,
+  rightArrow: PropTypes.bool,
 };
 
 Button.defaultProps = {
   clicked: null,
   children: null,
-  leftArrow: null,
+  leftArrow: false,
+  rightArrow: false,
 };
 
 export default Button;

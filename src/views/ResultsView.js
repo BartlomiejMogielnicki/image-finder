@@ -26,15 +26,25 @@ const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
   background-color: rgba(0, 0, 0, 0.8);
   animation: ${showIn} 1s linear forwards;
 `;
 
 const StyledHeading = styled.h2`
   margin: 20px;
-  text-transform: capitalize;
   color: white;
   font-size: 2rem;
+  text-transform: capitalize;
+`;
+
+const StyledError = styled.p`
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  transform: translateX(-50%);
+  color: red;
+  font-size: 1.5rem;
 `;
 
 const StyledBackground = styled.div`
@@ -56,19 +66,32 @@ const ResultsView = ({ location }) => {
   const [pageNumber, setPageNumber] = useState(1);
   const [isInitialLoading, setIsInitialLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const handleGetPictures = async () => {
     const fetchedPicturesArray = await fetchPictures(searchTerm, 1);
-    setGalleryPictures(fetchedPicturesArray);
-    setIsInitialLoading(false);
-    setPageNumber((prevPageNumber) => prevPageNumber + 1);
+    if (fetchedPicturesArray instanceof Error) {
+      setIsError(true);
+      setIsInitialLoading(false);
+    } else {
+      setIsError(false);
+      setIsInitialLoading(false);
+      setGalleryPictures(fetchedPicturesArray);
+      setPageNumber((prevPageNumber) => prevPageNumber + 1);
+    }
   };
 
   const handleGetMorePictures = async () => {
     const fetchedPicturesArray = await fetchPictures(searchTerm, pageNumber);
-    setGalleryPictures([...galleryPictures, ...fetchedPicturesArray]);
-    setIsLoading(false);
-    setPageNumber((prevPageNumber) => prevPageNumber + 1);
+    if (fetchedPicturesArray instanceof Error) {
+      setIsError(true);
+      setIsLoading(false);
+    } else {
+      setGalleryPictures([...galleryPictures, ...fetchedPicturesArray]);
+      setIsLoading(false);
+      setIsError(false);
+      setPageNumber((prevPageNumber) => prevPageNumber + 1);
+    }
   };
 
   const handleScroll = () => {
@@ -94,6 +117,9 @@ const ResultsView = ({ location }) => {
     <StyledWrapper>
       <SearchForm />
       <StyledHeading>{searchTerm}</StyledHeading>
+      {isError && (
+        <StyledError>Connection failed... Please try again.</StyledError>
+      )}
       {galleryPictures && <PicturesGallery picturesArray={galleryPictures} />}
       {isInitialLoading && <LoadingSpinner center />}
       {isLoading && <LoadingSpinner />}

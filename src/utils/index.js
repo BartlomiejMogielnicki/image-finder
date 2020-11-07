@@ -56,9 +56,7 @@ export const fetchPictures = (searchTerm, page) => {
       }));
       return picturesArray;
     })
-    .catch((error) => {
-      console.log(error);
-    });
+    .catch((error) => error);
 
   return fetchedPictures;
 };

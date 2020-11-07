@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 
 const rotate = keyframes`
   from {
-    transform: rotate(0deg)
+    transform: translateX(-50%) rotate(0deg)
   }
 
   to {
-    transform: rotate(360deg)
+    transform: translateX(-50%) rotate(360deg)
   }
 `;
 
@@ -25,7 +25,6 @@ const StyledLoadingSpinner = styled.div`
     center &&
     css`
       bottom: 50%;
-      transform: translateX(-50%, -50%);
       font-size: 4rem;
     `}
 `;
@@ -37,11 +36,11 @@ const LoadingSpinner = ({ center }) => (
 );
 
 LoadingSpinner.propTypes = {
-  center: PropTypes.string,
+  center: PropTypes.bool,
 };
 
 LoadingSpinner.defaultProps = {
-  center: null,
+  center: false,
 };
 
 export default LoadingSpinner;

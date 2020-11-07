@@ -21,6 +21,7 @@ const StyledIcon = styled.i`
 const StyledInput = styled.input`
   width: 100%;
   padding: 10px;
+  font-size: 1.1rem;
   border-radius: 10px;
 `;
 

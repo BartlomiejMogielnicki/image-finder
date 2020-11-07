@@ -76,6 +76,10 @@ const StyledImage = styled.img`
   max-height: 90vh;
 `;
 
+const StyledIcon = styled.i`
+  color: green;
+`;
+
 const StyledModalBackdrop = styled.div`
   position: fixed;
   top: 0;
@@ -107,7 +111,7 @@ const PictureModal = ({
           </StyledOwnerInfo>
         </StyledOwnerData>
         <StyledLikesInfo>
-          <i className="fas fa-thumbs-up" />
+          <StyledIcon className="fas fa-thumbs-up" />
           <StyledParagraph>{picture.likes}</StyledParagraph>
         </StyledLikesInfo>
         {picture.location.country && (
