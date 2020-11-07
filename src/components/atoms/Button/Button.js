@@ -30,7 +30,7 @@ const Button = ({ clicked, children, leftArrow, rightArrow }) => (
 
 Button.propTypes = {
   clicked: PropTypes.func,
-  children: PropTypes.any,
+  children: PropTypes.node,
   leftArrow: PropTypes.bool,
   rightArrow: PropTypes.bool,
 };

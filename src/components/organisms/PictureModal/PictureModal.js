@@ -121,7 +121,7 @@ const PictureModal = ({
             <StyledParagraph>{picture.location.city}</StyledParagraph>
           </StyledLocationInfo>
         )}
-        <StyledImage src={picture.url} alt="" />
+        <StyledImage src={picture.url} alt={picture.alt} />
         {pictureIndex !== 0 && (
           <Button leftArrow clicked={() => changePicture(pictureIndex - 1)}>
             <i className="fas fa-angle-left" />
@@ -142,6 +142,7 @@ PictureModal.propTypes = {
   picture: PropTypes.shape({
     id: PropTypes.string,
     url: PropTypes.string,
+    alt: PropTypes.string,
     likes: PropTypes.number,
     location: PropTypes.shape({
       country: PropTypes.string,

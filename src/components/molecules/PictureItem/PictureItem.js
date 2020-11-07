@@ -20,16 +20,21 @@ const StyledImage = styled.img`
   }
 `;
 
-const PictureItem = ({ id, urlSmall, clicked }) => (
+const PictureItem = ({ id, urlSmall, alt, clicked }) => (
   <StyledWrapper id={id} onClick={clicked}>
-    <StyledImage src={urlSmall} alt="" />
+    <StyledImage src={urlSmall} alt={alt} />
   </StyledWrapper>
 );
 
 PictureItem.propTypes = {
   id: PropTypes.string.isRequired,
   urlSmall: PropTypes.string.isRequired,
+  alt: PropTypes.string,
   clicked: PropTypes.func.isRequired,
+};
+
+PictureItem.defaultProps = {
+  alt: 'image',
 };
 
 export default PictureItem;

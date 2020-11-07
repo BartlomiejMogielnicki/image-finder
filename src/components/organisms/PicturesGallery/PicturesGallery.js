@@ -58,6 +58,7 @@ const PicturesGallery = ({ picturesArray }) => {
       key={picture.id}
       id={picture.id}
       urlSmall={picture.url.small}
+      alt={picture.alt}
       clicked={() => handleGetPicture(picture.id, index)}
     />
   ));

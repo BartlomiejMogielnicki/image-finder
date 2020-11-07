@@ -4,7 +4,8 @@ import styled from 'styled-components';
 
 const StyledForm = styled.form`
   padding-left: 10px;
-  width: 500px;
+  width: 80%;
+  max-width: 500px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -25,7 +26,7 @@ const StyledInput = styled.input`
   border-radius: 10px;
 `;
 
-const SearchForm = ({ top }) => {
+const SearchForm = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [submittedTerm, setSubmittedTerm] = useState('');
 
@@ -35,7 +36,7 @@ const SearchForm = ({ top }) => {
   };
 
   return (
-    <StyledForm onSubmit={(e) => handleSubmit(e)} top={top}>
+    <StyledForm onSubmit={(e) => handleSubmit(e)}>
       <StyledIcon className="fas fa-search" />
       <StyledInput
         type="text"

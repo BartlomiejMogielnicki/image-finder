@@ -12,6 +12,7 @@ export const fetchSinglePicture = (id) => {
       const picture = {
         id: item.id,
         url: item.urls.regular,
+        alt: item.alt_description,
         likes: item.likes,
         location: {
           country: item.location.country,
@@ -47,6 +48,7 @@ export const fetchPictures = (searchTerm, page) => {
           small: item.urls.small,
           regular: item.urls.regular,
         },
+        alt: item.alt_description,
         likes: item.likes,
         owner: {
           name: item.user.name,
