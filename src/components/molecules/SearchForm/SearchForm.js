@@ -14,6 +14,7 @@ const StyledForm = styled.form`
 `;
 
 const StyledIcon = styled.i`
+  color: #555;
   font-size: 1.3rem;
 `;
 
@@ -38,6 +39,7 @@ const SearchForm = () => {
       <StyledInput
         type="text"
         value={searchTerm}
+        placeholder="Search high-resolution photos"
         onChange={(e) => setSearchTerm(e.target.value)}
       />
       {submittedTerm && (

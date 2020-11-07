@@ -54,11 +54,13 @@ const ResultsView = ({ location }) => {
 
   const [galleryPictures, setGalleryPictures] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
+  const [isInitialLoading, setIsInitialLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleGetPictures = async () => {
     const fetchedPicturesArray = await fetchPictures(searchTerm, 1);
     setGalleryPictures(fetchedPicturesArray);
+    setIsInitialLoading(false);
     setPageNumber((prevPageNumber) => prevPageNumber + 1);
   };
 
@@ -93,6 +95,7 @@ const ResultsView = ({ location }) => {
       <SearchForm />
       <StyledHeading>{searchTerm}</StyledHeading>
       {galleryPictures && <PicturesGallery picturesArray={galleryPictures} />}
+      {isInitialLoading && <LoadingSpinner center />}
       {isLoading && <LoadingSpinner />}
       <StyledBackground />
     </StyledWrapper>
