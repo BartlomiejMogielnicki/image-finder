@@ -14,6 +14,7 @@ const StyledModalWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 10;
 `;
 
 const StyledContainer = styled.div`
@@ -82,6 +83,7 @@ const StyledModalBackdrop = styled.div`
   bottom: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.7);
+  cursor: zoom-out;
 `;
 
 const PictureModal = ({

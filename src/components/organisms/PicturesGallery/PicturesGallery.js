@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import { fetchPictures, fetchSinglePicture } from '../../../utils/index';
+import { fetchSinglePicture } from '../../../utils/index';
 
 import PictureItem from '../../molecules/PictureItem/PictureItem';
 import PictureModal from '../PictureModal/PictureModal';
 
 const StyledListWrapper = styled.ul`
   width: 100%;
-  max-width: 1500px;
+  max-width: 1350px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(425px, 1fr));
   grid-auto-rows: minmax(50px, auto);
   grid-gap: 20px 10px;
 `;

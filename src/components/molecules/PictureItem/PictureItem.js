@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const StyledWrapper = styled.li`
-  width: 350px;
+  width: 425px;
   justify-self: center;
-  cursor: pointer;
+  cursor: zoom-in;
 `;
 
 const StyledImage = styled.img`

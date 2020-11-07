@@ -10,6 +10,7 @@ const StyledForm = styled.form`
   align-items: center;
   background-color: #fff;
   border-radius: 10px;
+  z-index: 1;
 `;
 
 const StyledIcon = styled.i`

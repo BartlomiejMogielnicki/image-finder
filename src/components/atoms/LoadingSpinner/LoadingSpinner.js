@@ -17,6 +17,7 @@ const StyledLoadingSpinner = styled.div`
   left: 50%;
   transform: translateX(-50%);
   font-size: 2rem;
+  color: white;
   animation: ${rotate} 2s linear infinite;
 `;
 

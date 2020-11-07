@@ -1,12 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 
 import { fetchPictures } from '../utils/index';
 
+import image1 from '../images/image1.jpg';
 import SearchForm from '../components/molecules/SearchForm/SearchForm';
 import PicturesGallery from '../components/organisms/PicturesGallery/PicturesGallery';
 import LoadingSpinner from '../components/atoms/LoadingSpinner/LoadingSpinner';
+
+const showIn = keyframes`
+from {
+  background-color: rgba(0, 0, 0, .7);
+}
+
+to {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+`;
 
 const StyledWrapper = styled.div`
   padding-top: 20px;
@@ -15,12 +26,27 @@ const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #ddd;
+  background-color: rgba(0, 0, 0, 0.8);
+  animation: ${showIn} 1s linear forwards;
 `;
 
 const StyledHeading = styled.h2`
   margin: 20px;
+  text-transform: capitalize;
+  color: white;
   font-size: 2rem;
+`;
+
+const StyledBackground = styled.div`
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: url(${image1});
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
 `;
 
 const ResultsView = ({ location }) => {
@@ -68,6 +94,7 @@ const ResultsView = ({ location }) => {
       <StyledHeading>{searchTerm}</StyledHeading>
       {galleryPictures && <PicturesGallery picturesArray={galleryPictures} />}
       {isLoading && <LoadingSpinner />}
+      <StyledBackground />
     </StyledWrapper>
   );
 };
