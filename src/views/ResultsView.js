@@ -31,7 +31,7 @@ const ResultsView = ({ location }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleGetPictures = async () => {
-    const fetchedPicturesArray = await fetchPictures(searchTerm, pageNumber);
+    const fetchedPicturesArray = await fetchPictures(searchTerm, 1);
     setFetchedPictures(fetchedPicturesArray);
     setPageNumber((prevPageNumber) => prevPageNumber + 1);
   };
@@ -59,6 +59,7 @@ const ResultsView = ({ location }) => {
 
   useEffect(() => {
     handleGetPictures();
+    setPageNumber(1);
   }, [searchTerm]);
 
   return (
