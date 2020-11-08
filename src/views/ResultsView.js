@@ -87,7 +87,14 @@ const ResultsView = ({ location }) => {
       setIsError(true);
       setIsLoading(false);
     } else {
-      setGalleryPictures([...galleryPictures, ...fetchedPicturesArray]);
+      const noDuplicatesArray = galleryPictures;
+      const picturesIdsArray = noDuplicatesArray.map((item) => item.id);
+      fetchedPicturesArray.forEach((item) => {
+        if (!picturesIdsArray.includes(item.id)) {
+          noDuplicatesArray.push(item);
+        }
+      });
+      setGalleryPictures([...noDuplicatesArray]);
       setIsLoading(false);
       setIsError(false);
       setPageNumber((prevPageNumber) => prevPageNumber + 1);
