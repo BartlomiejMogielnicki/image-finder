@@ -26,7 +26,7 @@ const StyledImage = styled.img`
 `;
 
 const PictureItem = ({ id, urlSmall, alt, clicked }) => (
-  <StyledWrapper id={id} onClick={clicked}>
+  <StyledWrapper id={id} onClick={clicked} data-testid="picture-item">
     <StyledImage src={urlSmall} alt={alt} />
   </StyledWrapper>
 );

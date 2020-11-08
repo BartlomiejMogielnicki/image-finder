@@ -14,7 +14,7 @@ const StyledModalWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 10;
+  z-index: 1000;
 `;
 
 const StyledContainer = styled.div`
@@ -145,7 +145,7 @@ const PictureModal = ({
 }) => {
   const twitterUrl = `https://twitter.com/${picture.owner.twitter}`;
   return (
-    <StyledModalWrapper>
+    <StyledModalWrapper data-testid="picture-modal">
       <StyledContainer>
         <StyledOwnerData>
           <StyledOwnerImage

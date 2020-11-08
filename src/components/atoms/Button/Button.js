@@ -37,7 +37,12 @@ const StyledButton = styled.button`
 `;
 
 const Button = ({ clicked, children, leftArrow, rightArrow }) => (
-  <StyledButton onClick={clicked} leftArrow={leftArrow} rightArrow={rightArrow}>
+  <StyledButton
+    onClick={clicked}
+    leftArrow={leftArrow}
+    rightArrow={rightArrow}
+    data-testid="button"
+  >
     {children}
   </StyledButton>
 );

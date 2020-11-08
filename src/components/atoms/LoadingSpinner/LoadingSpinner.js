@@ -30,7 +30,7 @@ const StyledLoadingSpinner = styled.div`
 `;
 
 const LoadingSpinner = ({ center }) => (
-  <StyledLoadingSpinner center={center}>
+  <StyledLoadingSpinner center={center} data-testid="loading-spinner">
     <i className="fas fa-spinner" />
   </StyledLoadingSpinner>
 );

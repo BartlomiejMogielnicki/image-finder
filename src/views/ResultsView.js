@@ -121,7 +121,7 @@ const ResultsView = ({ location }) => {
   }, [searchTerm]);
 
   return (
-    <StyledWrapper>
+    <StyledWrapper data-testid="results-view">
       <SearchForm />
       <StyledHeading>{searchTerm}</StyledHeading>
       {isError && (

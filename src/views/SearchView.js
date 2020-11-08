@@ -40,7 +40,7 @@ const StyledSubheading = styled.p`
 `;
 
 const SearchView = () => (
-  <StyledWrapper>
+  <StyledWrapper data-testid="search-view">
     <StyledHeading>Image Finder</StyledHeading>
     <SearchForm />
     <StyledSubheading>Powered by Unsplash</StyledSubheading>

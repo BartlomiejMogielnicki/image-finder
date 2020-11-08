@@ -26,7 +26,7 @@ const StyledError = styled.div`
   border: 2px solid red;
   color: red;
   font-size: 1.5rem;
-  z-index: 100;
+  z-index: 1001;
 `;
 
 const PicturesGallery = ({ picturesArray }) => {
@@ -65,7 +65,7 @@ const PicturesGallery = ({ picturesArray }) => {
   ));
 
   return (
-    <StyledListWrapper>
+    <StyledListWrapper data-testid="pictures-gallery">
       {pictures}
       {isModalError && (
         <StyledError>Connection failed... Please try again.</StyledError>

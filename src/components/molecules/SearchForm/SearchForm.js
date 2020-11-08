@@ -107,7 +107,7 @@ const SearchForm = () => {
   ));
 
   return (
-    <StyledForm onSubmit={(e) => handleSubmit(e)}>
+    <StyledForm onSubmit={(e) => handleSubmit(e)} data-testid="search-form">
       <StyledIcon className="fas fa-search" />
       <StyledInput
         type="text"
