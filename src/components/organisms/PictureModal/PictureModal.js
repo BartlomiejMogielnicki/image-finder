@@ -165,8 +165,10 @@ const PictureModal = ({
         {picture.location.country && (
           <StyledLocationInfo>
             <i className="fas fa-map-marker-alt" />
-            <StyledParagraph>{picture.location.country}</StyledParagraph>,
-            <StyledParagraph>{picture.location.city}</StyledParagraph>
+            <StyledParagraph>{picture.location.country}</StyledParagraph>
+            {picture.location.city && (
+              <StyledParagraph>{`, ${picture.location.city}`}</StyledParagraph>
+            )}
           </StyledLocationInfo>
         )}
         <StyledImage src={picture.url} alt={picture.alt} />

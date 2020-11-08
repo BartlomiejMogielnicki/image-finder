@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -9,6 +9,7 @@ const StyledForm = styled.form`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
   background-color: #fff;
   border-radius: 10px;
   z-index: 1;
@@ -26,14 +27,91 @@ const StyledInput = styled.input`
   border-radius: 10px;
 `;
 
+const StyledAutocompleteContainer = styled.div`
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 10px;
+`;
+
+const StyledAutocompleteButton = styled.button`
+  width: 100%;
+  padding: 10px 10px 10px 20px;
+  background-color: #fff;
+  font-size: 1.1rem;
+  text-align: left;
+  transition: 0.3s;
+
+  :hover {
+    background-color: #ccc;
+  }
+
+  :nth-of-type(1) {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  :nth-last-of-type(1) {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+`;
+
+const autocompleteData = [
+  'island',
+  'islands of zz',
+  'islands',
+  'islands of coast of krabi',
+  'islands of greece',
+  'islands of z',
+  'islands of thailand',
+  'islands of zzz',
+  'another keyword',
+  'another keyword1',
+  'another keyword2',
+  'another keyword3',
+];
+
 const SearchForm = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [submittedTerm, setSubmittedTerm] = useState('');
+  const [autocompleteOptions, setAutocompleteOptions] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmittedTerm(searchTerm);
   };
+
+  const handleAutocompleteSubmit = (keyword) => {
+    setSubmittedTerm(keyword);
+    setSearchTerm('');
+  };
+
+  useEffect(() => {
+    if (searchTerm.length >= 3) {
+      const filteredAutocomplete = autocompleteData
+        .filter((item) => item.includes(searchTerm))
+        .sort()
+        .slice(0, 5);
+      setAutocompleteOptions(filteredAutocomplete);
+    } else {
+      setAutocompleteOptions([]);
+    }
+  }, [searchTerm]);
+
+  const autocompleteElements = autocompleteOptions.map((item) => (
+    <StyledAutocompleteButton
+      key={item}
+      onClick={() => handleAutocompleteSubmit(item)}
+    >
+      {item}
+    </StyledAutocompleteButton>
+  ));
 
   return (
     <StyledForm onSubmit={(e) => handleSubmit(e)}>
@@ -44,6 +122,11 @@ const SearchForm = () => {
         placeholder="Search high-resolution photos"
         onChange={(e) => setSearchTerm(e.target.value)}
       />
+      {autocompleteElements && (
+        <StyledAutocompleteContainer>
+          {autocompleteElements}
+        </StyledAutocompleteContainer>
+      )}
       {submittedTerm && (
         <Redirect to={{ pathname: '/results', state: submittedTerm }} />
       )}
