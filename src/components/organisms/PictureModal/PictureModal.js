@@ -118,9 +118,7 @@ const StyledLocationInfo = styled.div`
 `;
 
 const StyledImage = styled.img`
-  /* width: 90%; */
   max-width: 100%;
-  /* height: 80%; */
   max-height: 100%;
 `;
 
@@ -150,7 +148,10 @@ const PictureModal = ({
     <StyledModalWrapper>
       <StyledContainer>
         <StyledOwnerData>
-          <StyledOwnerImage src={picture.owner.image} alt="" />
+          <StyledOwnerImage
+            src={picture.owner.image}
+            alt={picture.owner.name}
+          />
           <StyledOwnerInfo>
             <StyledParagraph>{picture.owner.name}</StyledParagraph>
             <a href={twitterUrl} target="_blank" rel="noreferrer">

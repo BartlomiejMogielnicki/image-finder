@@ -12,7 +12,7 @@ const StyledForm = styled.form`
   position: relative;
   background-color: #fff;
   border-radius: 10px;
-  z-index: 1;
+  z-index: 15;
 `;
 
 const StyledIcon = styled.i`
@@ -37,6 +37,7 @@ const StyledAutocompleteContainer = styled.div`
   justify-content: space-evenly;
   align-items: center;
   border-radius: 10px;
+  overflow: hidden;
 `;
 
 const StyledAutocompleteButton = styled.button`
@@ -49,16 +50,6 @@ const StyledAutocompleteButton = styled.button`
 
   :hover {
     background-color: #ccc;
-  }
-
-  :nth-of-type(1) {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-  }
-
-  :nth-last-of-type(1) {
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
   }
 `;
 
