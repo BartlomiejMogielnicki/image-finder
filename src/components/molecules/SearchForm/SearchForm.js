@@ -85,6 +85,7 @@ const SearchForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmittedTerm(searchTerm);
+    setSearchTerm('');
   };
 
   const handleAutocompleteSubmit = (keyword) => {
@@ -106,6 +107,7 @@ const SearchForm = () => {
 
   const autocompleteElements = autocompleteOptions.map((item) => (
     <StyledAutocompleteButton
+      type="button"
       key={item}
       onClick={() => handleAutocompleteSubmit(item)}
     >
