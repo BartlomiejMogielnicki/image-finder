@@ -26,6 +26,7 @@ const StyledError = styled.div`
   border: 2px solid red;
   color: red;
   font-size: 1.5rem;
+  z-index: 100;
 `;
 
 const PicturesGallery = ({ picturesArray }) => {
