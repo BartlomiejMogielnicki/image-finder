@@ -25,9 +25,25 @@ const StyledWrapper = styled.div`
   }
 `;
 
+const StyledHeading = styled.h1`
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  color: #fff;
+  font-size: 2.5rem;
+  z-index: 10;
+`;
+
+const StyledSubheading = styled.p`
+  margin-top: 20px;
+  color: #fff;
+  z-index: 10;
+`;
+
 const SearchView = () => (
   <StyledWrapper>
+    <StyledHeading>Image Finder</StyledHeading>
     <SearchForm />
+    <StyledSubheading>Powered by Unsplash</StyledSubheading>
   </StyledWrapper>
 );
 
